@@ -15,8 +15,7 @@ public class Week1 {
     @Test
     void botClarifiesIntentOnGreeting() {
         // given
-        String userMessage = "hi";
-        verifyConversation(userMessage);
+        verifyConversation("hi");
     }
 
     private static void verifyConversation(String userMessage) {
