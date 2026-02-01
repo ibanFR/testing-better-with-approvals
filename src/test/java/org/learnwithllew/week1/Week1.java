@@ -1,12 +1,12 @@
 package org.learnwithllew.week1;
 
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.learnwithllew.*;
 
 import java.util.List;
 import java.util.UUID;
 
-import static org.approvaltests.Approvals.verify;
 import static org.assertj.core.api.Assertions.assertThat;
 
 // Lada’s tests -> approval test (of the list) -> better printing
@@ -32,11 +32,7 @@ public class Week1 {
         bot.receive(message);
         // then
         BotAction botActions = output.read(message.getConversationId());
-        assertThat(botActions.commands())
-            .containsExactly(
-                new SendPlainMessageCommand("Hi there! I'm your virtual assistant."),
-                new SendPlainMessageCommand("What would you like to do today?")
-            );
+        Approvals.verify(LoggerUtils.printCommands(botActions.commands()));
     }
 
     @Test
