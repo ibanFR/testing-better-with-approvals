@@ -15,12 +15,17 @@ public class Week1 {
     @Test
     void botClarifiesIntentOnGreeting() {
         // given
+        String userMessage = "hi";
+        verifyConversation(userMessage);
+    }
+
+    private static void verifyConversation(String userMessage) {
         EventNotification message = TestUtils.eventNotification()
             .userId(new UserId.Builder().channel(Channel.TEXT).id(UUID.randomUUID().toString()).build())
             .properties(List.of(
                 new Property("accountId", "1234567"),
                 new Property("code", "411")))
-            .events(List.of(new MessageEvent(System.currentTimeMillis(), "0", "hi"))).build();
+            .events(List.of(new MessageEvent(System.currentTimeMillis(), "0", userMessage))).build();
         BotOutput output = new BotOutput();
         Bot bot = new Bot(output);
         // when
